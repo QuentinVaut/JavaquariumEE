@@ -28,12 +28,25 @@ public class PoissonService implements IPoissonService {
             poissonVO.setEspece(String.valueOf(poisson.getNom()));
             poissonVO.setCouleur(String.valueOf(poisson.getCouleur()));
             poissonVO.setDescription(String.valueOf(poisson.getDescritpion()));
-            poissonVO.setDimension(String.valueOf("L : " + poisson.getLargeur()  + " x l :" + poisson.getLongeur()));
+            poissonVO.setDimension(String.valueOf("L : " + poisson.getLargeur() + " x l :" + poisson.getLongeur()));
             poissonVO.setEspece(String.valueOf(poisson.getNom()));
             poissonVO.setPrix(String.valueOf(poisson.getPrix()));
             lstPoisson.add(poissonVO);
         }
         return lstPoisson;
+    }
+
+    public PoissonVO getPoisson(int id) {
+        PoissonDO poisson = poissonRepository.findOne(id);
+        PoissonVO poissonVO = new PoissonVO();
+        poissonVO.setCode(String.valueOf(poisson.getId()));
+        poissonVO.setEspece(String.valueOf(poisson.getNom()));
+        poissonVO.setCouleur(String.valueOf(poisson.getCouleur()));
+        poissonVO.setDescription(String.valueOf(poisson.getDescritpion()));
+        poissonVO.setDimension(String.valueOf("L : " + poisson.getLargeur() + " x l :" + poisson.getLongeur()));
+        poissonVO.setEspece(String.valueOf(poisson.getNom()));
+        poissonVO.setPrix(String.valueOf(poisson.getPrix()));
+        return poissonVO;
     }
 
     @Override

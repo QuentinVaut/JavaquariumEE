@@ -10,6 +10,7 @@ import java.util.List;
 public interface IPoissonService {
 
     List<PoissonVO> getPoissons();
+    PoissonVO getPoisson(int id);
     void ajout(PoissonVO poisson);
 
 
