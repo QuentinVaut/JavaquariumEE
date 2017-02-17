@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Lister espèces</title>
+</head>
+<body>
+<h1 th:inline="text"><span th:text="#{javaquarium.welcome}"></span> Bienvenue [[${#httpServletRequest.remoteUser}]]!</h1>
+
+<p th:inline="text"> Mon aquarium (<span th:text="${#lists.size(lstPoissonDO)}"> </span>) <a href="#">Sauvegarder</a> <a
+        href="#">Vider</a></p>
+
+<table>
+    <tr>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Couleur</th>
+        <th>Dimension</th>
+        <th>Prix</th>
+        <th>Détail</th>
+        <th>Mon aquarium</th>
+    </tr>
+
+    <tr th:each="p,iterationStatus  : ${lstPoissonDO}">
+        <td th:text="${p.espece}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.couleur}"></td>
+        <td th:text="${p.dimension}"></td>
+        <td th:text="${p.prix}"></td>
+        <td><a href="#">Détail</a></td>
+        <td><a href="#">Ajouter</a> <a href="#">Enlever</a></td>
+    </tr>
+</table>
+
+<p><a href="ajoutEspece">Nouveau poisson</a></p>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Deconnexion"/>
+</form>
+
+</body>
+
+</html>
