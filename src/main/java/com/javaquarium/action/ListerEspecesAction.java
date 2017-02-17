@@ -28,13 +28,9 @@ public class ListerEspecesAction {
     @Autowired
     private PoissonRepository poissonRepository;
     private IPoissonService poissonService;
-    private AquariumVO aquariumVO = new AquariumVO();
-    private List<PoissonVO> lstPoissonVO = new ArrayList<>();
-
 
     @RequestMapping("/listerEspeces")
     public String listerEspeces(Model model, HttpSession session) {
-        session.setAttribute("myAquarium",aquariumVO);
         poissonService = new PoissonService(poissonRepository);
         model.addAttribute("lstPoissonDO", poissonService.getPoissons());
         return "UC01_especes";

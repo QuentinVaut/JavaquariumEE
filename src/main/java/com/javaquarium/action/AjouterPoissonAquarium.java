@@ -33,6 +33,7 @@ public class AjouterPoissonAquarium {
         //AquariumVO aquariumVO = (AquariumVO)session.getAttribute("myAquarium");
         //aquariumVO.getLstPoissonsAquarium().add(poissonService.getPoisson(Integer.parseInt(idFish)));
         AquariumVO aquariumVO = (AquariumVO) session.getAttribute("myAquarium");
+        aquariumVO.getLstPoissonsAquarium().add(poissonService.getPoisson(Integer.parseInt(idFish)));
         logger.warn("Session : " + aquariumVO.getLstPoissonsAquarium().size());
 
         return "redirect:/listerEspeces";
