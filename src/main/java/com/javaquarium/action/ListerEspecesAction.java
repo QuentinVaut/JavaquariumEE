@@ -28,11 +28,19 @@ public class ListerEspecesAction {
     @Autowired
     private PoissonRepository poissonRepository;
     private IPoissonService poissonService;
+    private AquariumVO aquariumVO = new AquariumVO();
 
     @RequestMapping("/listerEspeces")
     public String listerEspeces(Model model, HttpSession session) {
+        session.setAttribute("myAquarium",aquariumVO);
         poissonService = new PoissonService(poissonRepository);
         model.addAttribute("lstPoissonDO", poissonService.getPoissons());
+        AquariumVO aquariumVO = (AquariumVO) session.getAttribute("myAquarium");
+        if(aquariumVO != null) {
+            model.addAttribute("sizeAquarium",aquariumVO.getLstPoissonsAquarium().size());
+        } else {
+            model.addAttribute("sizeAquarium",0);
+        }
         return "UC01_especes";
     }
 

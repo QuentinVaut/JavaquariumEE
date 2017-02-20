@@ -7,7 +7,7 @@
 <body>
 <h1 th:inline="text"><spring:message code="javaquarium.welcome" text="default text" /> [[${#httpServletRequest.remoteUser}]]!</h1>
 
-<p th:inline="text"> Mon aquarium (<span th:text="${#lists.size(lstPoissonDO)}"> </span>) <a href="#">Sauvegarder</a> <a
+<p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="#">Sauvegarder</a> <a
         href="#">Vider</a></p>
 
 <table>

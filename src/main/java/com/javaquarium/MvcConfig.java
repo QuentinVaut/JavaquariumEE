@@ -5,14 +5,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import java.util.Locale;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by quentin on 16/02/2017.
@@ -24,32 +25,27 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("/i18n");
-        messageSource.setDefaultEncoding("UTF-8");
+        ReloadableResourceBundleMessageSource messageSource =
+                new ReloadableResourceBundleMessageSource();
+        messageSource.setCacheSeconds(-1); //cache time in seconds was set to -1. This disables reloading and makes the message source cache messages forever (until the JVM restarts).
+        messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        messageSource.setBasenames("/resources/i18n/messages"); //the message source is configured with the basenames /WEB-INF/i18n/messages and /WEB-INF/i18n/errors. This means that the message source will look for filenames like /WEB-INF/i18n/messages_en_US.properties, /WEB-INF/i18n/errors_fr_FR.properties
         return messageSource;
     }
 
     @Bean
-    public CookieLocaleResolver localeResolver(){
-        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-        localeResolver.setDefaultLocale(Locale.FRANCE);
-        localeResolver.setCookieName("my-locale-cookie");
-        localeResolver.setCookieMaxAge(3600);
-        return localeResolver;
-    }
-
-    @Bean
-    public LocaleChangeInterceptor localeInterceptor(){
-        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("lang");
-        return interceptor;
+    public LocaleResolver localeResolver() //The bean must be named localeResolver.
+    {
+        return new SessionLocaleResolver();
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(localeInterceptor());
+        super.addInterceptors(registry);
+        registry.addInterceptor(new LocaleChangeInterceptor());
     }
+
+
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {

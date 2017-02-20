@@ -30,12 +30,10 @@ public class AjouterPoissonAquarium {
     public String addEspeceToAquarium(@PathVariable String idFish, Model model, HttpSession session) {
 
         poissonService = new PoissonService(poissonRepository);
-        //AquariumVO aquariumVO = (AquariumVO)session.getAttribute("myAquarium");
-        //aquariumVO.getLstPoissonsAquarium().add(poissonService.getPoisson(Integer.parseInt(idFish)));
+        logger.warn("Session : " + session.getAttribute("myAquarium").getClass().getSimpleName());
         AquariumVO aquariumVO = (AquariumVO) session.getAttribute("myAquarium");
         aquariumVO.getLstPoissonsAquarium().add(poissonService.getPoisson(Integer.parseInt(idFish)));
         logger.warn("Session : " + aquariumVO.getLstPoissonsAquarium().size());
-
         return "redirect:/listerEspeces";
     }
 }
