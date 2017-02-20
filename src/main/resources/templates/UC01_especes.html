@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:spring="http://www.springframework.org/tags">
 <head>
     <title>Lister espèces</title>
 </head>
 <body>
-<h1 th:inline="text"><span th:text="#{javaquarium.welcome}"></span> Bienvenue [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text"><spring:message code="javaquarium.welcome" text="default text" /> [[${#httpServletRequest.remoteUser}]]!</h1>
 
 <p th:inline="text"> Mon aquarium (<span th:text="${#lists.size(lstPoissonDO)}"> </span>) <a href="#">Sauvegarder</a> <a
         href="#">Vider</a></p>
