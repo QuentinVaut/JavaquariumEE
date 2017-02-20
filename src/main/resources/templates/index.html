@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:spring="http://www.springframework.org/tags"
-      xmlns:fmt="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:c="http://www.w3.org/1999/XSL/Transform"
-      xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:spring="http://www.springframework.org/tags">
 <head>
     <title>
         <spring:message code="title.alerts"/>
@@ -10,26 +9,12 @@
 <body>
 
 <p><a href="/listerEspeces">Lister espéces </a></p>
+<h1 th:text="#{hello.world}">FooBar</h1>
+
 
 <h2>
     <spring:message code="title.alerts"/>
 </h2>
-<i>
-    <fmt:message key="alerts.current.date">
-        <fmt:param value="${date}"/>
-    </fmt:message>
-</i><br/><br/>
-<fmt:message key="number.alerts">
-    <fmt:param value="${alerts}"/>
-</fmt:message>
-<c:if test="${alerts > 0}">
-    &nbsp;
-    <spring:message code="alert.details">
-        <spring:argument value="${numCritical}"/>
-        <spring:argument value="${numImportant}"/>
-        <spring:argument value="${numTrivial}"/>
-    </spring:message>
-</c:if>
 </body>
 
 </html>

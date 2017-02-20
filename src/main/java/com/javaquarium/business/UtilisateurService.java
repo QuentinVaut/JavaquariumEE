@@ -13,9 +13,9 @@ import java.util.List;
  * Created by quentin on 20/02/2017.
  */
 @Service
-public class UtilisateurService implements IUtilisateurService {
+public class UtilisateurService {
 
-    private final UtilisateurRepository utilisateurRepository;
+   /* private final UtilisateurRepository utilisateurRepository;
 
     @Autowired
     public UtilisateurService(UtilisateurRepository utilisateurRepository) {
@@ -33,8 +33,9 @@ public class UtilisateurService implements IUtilisateurService {
     }
 
     @Override
-    public UtilisateurVO getUser(int id) {
-        return map(utilisateurRepository.findOne(id));
+    public UtilisateurVO getUser(String login) {
+
+        return map(utilisateurRepository.findOneByUsername(login));
     }
 
     @Override
@@ -51,7 +52,7 @@ public class UtilisateurService implements IUtilisateurService {
     public UtilisateurDO map(UtilisateurVO utilisateurVO) {
         UtilisateurDO utilisateurDO = new UtilisateurDO();
         utilisateurDO.setId(utilisateurVO.getId());
-        utilisateurDO.setLogin(utilisateurVO.getLogin());
+        utilisateurDO.setLogin(utilisateurVO.getUsername());
         utilisateurDO.setPassword(utilisateurVO.getPassword());
         return utilisateurDO;
     }
@@ -60,8 +61,8 @@ public class UtilisateurService implements IUtilisateurService {
     public UtilisateurVO map(UtilisateurDO utilisateurDO) {
         UtilisateurVO utilisateurVO = new UtilisateurVO();
         utilisateurVO.setId(utilisateurDO.getId());
-        utilisateurVO.setLogin(utilisateurDO.getLogin());
+        utilisateurVO.setUsername(utilisateurDO.getLogin());
         utilisateurVO.setPassword(utilisateurDO.getPassword());
         return utilisateurVO;
-    }
+    }*/
 }

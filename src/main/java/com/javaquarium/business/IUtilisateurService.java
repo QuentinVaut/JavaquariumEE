@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IUtilisateurService {
     List<UtilisateurVO> getUsers();
-    UtilisateurVO getUser(int id);
+    UtilisateurVO getUser(String login);
     void ajout(UtilisateurVO utilisateurVO);
     boolean checkLogin(String login,String password);
     UtilisateurDO map(UtilisateurVO utilisateurVO);
