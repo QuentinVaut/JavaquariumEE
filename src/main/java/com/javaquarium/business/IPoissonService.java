@@ -1,4 +1,4 @@
-package com.javaquarium.beans.data;
+package com.javaquarium.business;
 
 import com.javaquarium.beans.web.PoissonVO;
 

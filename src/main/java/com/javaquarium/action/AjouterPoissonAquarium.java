@@ -1,6 +1,6 @@
 package com.javaquarium.action;
 
-import com.javaquarium.beans.data.IPoissonService;
+import com.javaquarium.business.IPoissonService;
 import com.javaquarium.beans.web.AquariumVO;
 import com.javaquarium.business.PoissonService;
 import com.javaquarium.repository.PoissonRepository;

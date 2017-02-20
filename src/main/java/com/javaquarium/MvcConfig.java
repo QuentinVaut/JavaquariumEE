@@ -29,7 +29,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
                 new ReloadableResourceBundleMessageSource();
         messageSource.setCacheSeconds(-1); //cache time in seconds was set to -1. This disables reloading and makes the message source cache messages forever (until the JVM restarts).
         messageSource.setDefaultEncoding(StandardCharsets.UTF_8.name());
-        messageSource.setBasenames("/resources/i18n/messages"); //the message source is configured with the basenames /WEB-INF/i18n/messages and /WEB-INF/i18n/errors. This means that the message source will look for filenames like /WEB-INF/i18n/messages_en_US.properties, /WEB-INF/i18n/errors_fr_FR.properties
+        messageSource.setBasenames("/i18n/messages"); //the message source is configured with the basenames /WEB-INF/i18n/messages and /WEB-INF/i18n/errors. This means that the message source will look for filenames like /WEB-INF/i18n/messages_en_US.properties, /WEB-INF/i18n/errors_fr_FR.properties
         return messageSource;
     }
 
@@ -49,9 +49,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
     }
 }
