@@ -53,10 +53,10 @@ public class PoissonService implements IPoissonService {
         PoissonDO poissonDo = new PoissonDO();
         poissonDo.setCouleur(poisson.getCouleur());
         poissonDo.setDescritpion(poisson.getDescription());
-        poissonDo.setLargeur(Float.parseFloat(poisson.getDimension()));
-        poissonDo.setLongeur(Float.parseFloat(poisson.getDimension()));
+        poissonDo.setLargeur(Float.parseFloat(poisson.getDimension().split("x")[0]));
+        poissonDo.setLongeur(Float.parseFloat(poisson.getDimension().split("x")[1]));
         poissonDo.setNom(poisson.getEspece());
-        poisson.setPrix(poisson.getPrix());
+        poissonDo.setPrix(Integer.parseInt(poisson.getPrix()));
         poissonRepository.save(poissonDo);
     }
 
