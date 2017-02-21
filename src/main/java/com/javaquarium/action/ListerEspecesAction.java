@@ -4,7 +4,10 @@ import com.javaquarium.business.IPoissonService;
 import com.javaquarium.beans.web.AquariumVO;
 import com.javaquarium.business.PoissonService;
 import com.javaquarium.repository.PoissonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +25,11 @@ public class ListerEspecesAction {
     private PoissonRepository poissonRepository;
     private IPoissonService poissonService;
     private AquariumVO aquariumVO = new AquariumVO();
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/listerEspeces")
     public String listerEspeces(Model model, HttpSession session) {
+        logger.warn("USER : " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         session.setAttribute("myAquarium",aquariumVO);
         poissonService = new PoissonService(poissonRepository);
         model.addAttribute("lstPoissonDO", poissonService.getPoissons());

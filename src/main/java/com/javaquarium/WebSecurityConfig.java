@@ -1,16 +1,16 @@
 package com.javaquarium;
 
-import com.javaquarium.beans.web.UtilisateurVO;
-import com.javaquarium.business.SSUserDetailsService;
-import com.javaquarium.repository.UtilisateurRepository;
+import com.javaquarium.business.MyUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
 
 /**
@@ -18,20 +18,29 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackageClasses = UtilisateurRepository.class)
+@ComponentScan("com.javaquarium")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private UtilisateurRepository utilisateurRepository;
+    private MyUserDetailsService userDetailsService;
+
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth)
+            throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/", "/registration").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .defaultSuccessUrl("/listerEspeces")
                 .permitAll()
                 .and()
                 .logout()
@@ -39,12 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsServiceBean());
-    }
-
-    @Override
-    public UserDetailsService userDetailsServiceBean() throws Exception {
-        return new SSUserDetailsService(utilisateurRepository);
+    public void configure(WebSecurity security){
+        security.ignoring().antMatchers("/resources/**");
     }
 }
