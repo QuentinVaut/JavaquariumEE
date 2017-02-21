@@ -1,5 +1,6 @@
 package com.javaquarium.config;
 
+import com.javaquarium.Application;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 

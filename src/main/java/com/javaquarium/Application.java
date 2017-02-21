@@ -1,4 +1,4 @@
-package com.javaquarium.config;
+package com.javaquarium;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
