@@ -28,7 +28,8 @@
         <td th:text="${p.dimension}"></td>
         <td th:text="${p.prix}"></td>
         <td><a href="#">Détail</a></td>
-        <td><a th:href="@{'/addEspeceToAquarium/' + ${p.code}}">Ajouter</a> <a th:href="@{'/removeEspeceToAquarium?IdFish=' + ${p.code}}">Enlever</a></td>
+        <td><a th:href="@{'/addEspeceToAquarium/' + ${p.code}}">Ajouter</a> <a
+                th:href="@{'/removeEspeceToAquarium?IdFish=' + ${p.code}}">Enlever</a></td>
     </tr>
 </table>
 

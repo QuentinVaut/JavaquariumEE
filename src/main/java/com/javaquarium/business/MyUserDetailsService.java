@@ -23,7 +23,7 @@ import java.util.Set;
  * Created by quentin on 21/02/2017.
  */
 @Service
-public class MyUserDetailsService implements UserDetailsService{
+public class MyUserDetailsService implements UserDetailsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(MyUserDetailsService.class);
     @Autowired
     private UserRepository userRepository;
@@ -37,27 +37,27 @@ public class MyUserDetailsService implements UserDetailsService{
 
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findByusername(s);
-        if(user == null) {
+        if (user == null) {
             LOGGER.warn("user not found with the provided username");
-            throw new UsernameNotFoundException("No user present with username: "+ s);
+            throw new UsernameNotFoundException("No user present with username: " + s);
         }
         LOGGER.warn(" user from username " + user.toString());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),getAuthorities(user));
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
 
     public User loadMyUserByUsername(String s) {
         User user = userRepository.findByusername(s);
-        if(user == null) {
-           return null;
+        if (user == null) {
+            return null;
         }
         LOGGER.warn(" user from username " + user.toString());
         return user;
     }
 
 
-    private Set<GrantedAuthority> getAuthorities(User user){
+    private Set<GrantedAuthority> getAuthorities(User user) {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        for(Role role : user.getRoles()) {
+        for (Role role : user.getRoles()) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
             authorities.add(grantedAuthority);
         }

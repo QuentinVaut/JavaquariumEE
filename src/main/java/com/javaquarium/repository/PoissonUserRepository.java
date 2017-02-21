@@ -12,6 +12,4 @@ import java.util.List;
  */
 public interface PoissonUserRepository extends JpaRepository<UserPoissonDO, Integer> {
     List<UserPoissonDO> findByUser(User user);
-
-
 }

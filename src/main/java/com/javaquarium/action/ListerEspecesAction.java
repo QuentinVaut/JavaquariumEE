@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * Created by quentin on 16/02/2017.
  */
 @Controller
-@SessionAttributes( value="myAquarium", types={AquariumVO.class} )
+@SessionAttributes(value = "myAquarium", types = {AquariumVO.class})
 public class ListerEspecesAction {
     @Autowired
     private PoissonRepository poissonRepository;
@@ -30,14 +30,14 @@ public class ListerEspecesAction {
     @RequestMapping("/listerEspeces")
     public String listerEspeces(Model model, HttpSession session) {
         logger.warn("USER : " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-        session.setAttribute("myAquarium",aquariumVO);
+        session.setAttribute("myAquarium", aquariumVO);
         poissonService = new PoissonService(poissonRepository);
         model.addAttribute("lstPoissonDO", poissonService.getPoissons());
         AquariumVO aquariumVO = (AquariumVO) session.getAttribute("myAquarium");
-        if(aquariumVO != null) {
-            model.addAttribute("sizeAquarium",aquariumVO.getLstPoissonsAquarium().size());
+        if (aquariumVO != null) {
+            model.addAttribute("sizeAquarium", aquariumVO.getLstPoissonsAquarium().size());
         } else {
-            model.addAttribute("sizeAquarium",0);
+            model.addAttribute("sizeAquarium", 0);
         }
         return "UC01_especes";
     }

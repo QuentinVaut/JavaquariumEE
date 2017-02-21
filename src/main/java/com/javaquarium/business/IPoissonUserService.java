@@ -12,6 +12,7 @@ import java.util.List;
 public interface IPoissonUserService {
 
     List<UserPoissonDO> getUserPoissons(String username);
+
     void save(UserPoissonVO userPoissonVO);
 
 }

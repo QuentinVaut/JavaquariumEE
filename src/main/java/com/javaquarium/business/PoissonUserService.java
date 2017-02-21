@@ -19,6 +19,7 @@ public class PoissonUserService implements IPoissonUserService {
     private UserRepository userRepository;
     @Autowired
     private PoissonUserRepository poissonUserRepository;
+
     @Override
     public List<UserPoissonDO> getUserPoissons(String username) {
         User user = userRepository.findByusername(username);

@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by quentin on 20/02/2017.
  */
 @Entity
-@Table(name="t_aquarium")
+@Table(name = "t_aquarium")
 public class AquariumDO {
 
     private Integer id;
@@ -26,8 +26,7 @@ public class AquariumDO {
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     public void setId(Integer id) {
         this.id = id;
@@ -36,15 +35,14 @@ public class AquariumDO {
     /**
      * @return the poisson
      */
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "poisson")
     public PoissonDO getPoisson() {
         return poisson;
     }
 
     /**
-     * @param poisson
-     *            the poisson to set
+     * @param poisson the poisson to set
      */
     public void setPoisson(PoissonDO poisson) {
         this.poisson = poisson;
@@ -59,13 +57,11 @@ public class AquariumDO {
     }
 
     /**
-     * @param count
-     *            the count to set
+     * @param count the count to set
      */
     public void setCount(Integer count) {
         this.count = count;
     }
-
 
 
 }
