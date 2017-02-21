@@ -1,4 +1,4 @@
-package com.javaquarium;
+package com.javaquarium.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

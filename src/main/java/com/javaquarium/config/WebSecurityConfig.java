@@ -1,4 +1,4 @@
-package com.javaquarium;
+package com.javaquarium.config;
 
 import com.javaquarium.business.MyUserDetailsService;
 import org.slf4j.Logger;
