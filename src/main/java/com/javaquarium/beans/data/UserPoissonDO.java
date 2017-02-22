@@ -14,9 +14,9 @@ public class UserPoissonDO {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Integer id;
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     private User user;
-    @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     private PoissonDO poissonDO;
 
     public Integer getId() {
