@@ -22,36 +22,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by quentin on 16/02/2017.
+ * Created by quentin on 22/02/2017.
  */
 @Controller
-public class ListerEspecesAction {
+public class SaveAquariumAction {
+
     @Autowired
-    private PoissonRepository poissonRepository;
+    private PoissonUserRepository poissonUserRepository;
     @Autowired private UserRepository userRepository;
-    @Autowired private PoissonUserRepository poissonUserRepository;
     private IPoissonService poissonService;
     private IPoissonUserService poissonUserService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private List<UserPoissonDO> userPoissonDOS;
     private UserDetails userDetails;
 
-    @RequestMapping("/listerEspeces")
+    @RequestMapping("/SaveAquarium")
     public String listerEspeces(Model model, HttpSession session) {
-        userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        poissonService = new PoissonService(poissonRepository);
-        poissonUserService = new PoissonUserService(poissonUserRepository,userRepository);
         userPoissonDOS = (ArrayList)session.getAttribute("userPoissonDOS");
-        //userPoissonDOS = poissonUserService.getUserPoissons(userDetails.getUsername());
-        //userPoissonDOS.addAll(poissonUserService.getUserPoissons(userDetails.getUsername()));
-        logger.warn("Poisson Session : " + userPoissonDOS.size());
-
-        model.addAttribute("lstPoissonDO", poissonService.getPoissons());
-        if (userPoissonDOS != null) {
-            model.addAttribute("sizeAquarium", userPoissonDOS.size());
-        } else {
-            model.addAttribute("sizeAquarium", 0);
-        }
-        return "UC01_especes";
+        poissonUserService = new PoissonUserService(poissonUserRepository,userRepository);
+        logger.warn("SAVE : " + userPoissonDOS.get(0).getPoissonDO().getId() + " USER ID " + userPoissonDOS.get(0).getUser().getId());
+        poissonUserService.save(userPoissonDOS);
+        return "redirect:/listerEspeces";
     }
 }

@@ -1,8 +1,6 @@
 package com.javaquarium.business;
 
-import com.javaquarium.beans.data.PoissonDO;
 import com.javaquarium.beans.data.UserPoissonDO;
-import com.javaquarium.beans.web.UserPoissonVO;
 
 import java.util.List;
 
@@ -13,6 +11,8 @@ public interface IPoissonUserService {
 
     List<UserPoissonDO> getUserPoissons(String username);
 
-    void save(UserPoissonVO userPoissonVO);
-
+    void save(UserPoissonDO userPoissonDO);
+    void save(List<UserPoissonDO> userPoissonDOList);
+    void deleteUserPoisson(List<UserPoissonDO> userPoissonDOList);
+    void deleteUserPoisson(UserPoissonDO userPoissonDO);
 }

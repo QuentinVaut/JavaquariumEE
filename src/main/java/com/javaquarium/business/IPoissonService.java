@@ -1,5 +1,6 @@
 package com.javaquarium.business;
 
+import com.javaquarium.beans.data.PoissonDO;
 import com.javaquarium.beans.web.PoissonVO;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public interface IPoissonService {
     PoissonVO getPoisson(int id);
 
     void ajout(PoissonVO poisson);
+
+    PoissonVO map(PoissonDO poissonDO);
+    PoissonDO map(PoissonVO poissonVO);
 
 
 }

@@ -7,7 +7,7 @@
 <body>
 <h1 th:inline="text"><span th:text="#{javaquarium.welcome}"></span> [[${#httpServletRequest.remoteUser}]]!</h1>
 
-<p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="#">Sauvegarder</a> <a
+<p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="/SaveAquarium">Sauvegarder</a> <a
         href="#">Vider</a></p>
 
 <table>
@@ -28,8 +28,7 @@
         <td th:text="${p.dimension}"></td>
         <td th:text="${p.prix}"></td>
         <td><a href="#">Détail</a></td>
-        <td><a th:href="@{'/addEspeceToAquarium/' + ${p.code}}">Ajouter</a> <a
-                th:href="@{'/removeEspeceToAquarium?IdFish=' + ${p.code}}">Enlever</a></td>
+        <td><a th:href="@{'/addEspeceToAquarium/' + ${p.code}}">Ajouter</a> <a th:href="@{'/removeFishAquarium/' + ${p.code}}">Enlever</a></td>
     </tr>
 </table>
 
