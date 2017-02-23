@@ -16,7 +16,10 @@ public interface IPoissonService {
 
     void ajout(PoissonVO poisson);
 
+    void delete(PoissonVO poissonVO);
+
     PoissonVO map(PoissonDO poissonDO);
+
     PoissonDO map(PoissonVO poissonVO);
 
 

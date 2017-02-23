@@ -12,7 +12,10 @@ public interface IPoissonUserService {
     List<UserPoissonDO> getUserPoissons(String username);
 
     void save(UserPoissonDO userPoissonDO);
+
     void save(List<UserPoissonDO> userPoissonDOList);
+
     void deleteUserPoisson(List<UserPoissonDO> userPoissonDOList);
+
     void deleteUserPoisson(UserPoissonDO userPoissonDO);
 }

@@ -15,7 +15,7 @@ public class UserPoissonDO {
     @Column(name = "id")
     private Integer id;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
-    private User user;
+    private UserDO user;
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     private PoissonDO poissonDO;
 
@@ -27,11 +27,11 @@ public class UserPoissonDO {
         this.id = id;
     }
 
-    public User getUser() {
+    public UserDO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDO user) {
         this.user = user;
     }
 

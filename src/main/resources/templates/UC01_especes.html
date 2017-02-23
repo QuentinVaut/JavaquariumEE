@@ -7,8 +7,8 @@
 <body>
 <h1 th:inline="text"><span th:text="#{javaquarium.welcome}"></span> [[${#httpServletRequest.remoteUser}]]!</h1>
 
-<p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="/SaveAquarium">Sauvegarder</a> <a
-        href="/RemoveUserAquarium">Vider</a></p>
+<p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="/ManageUserAquarium/Save">Sauvegarder</a> <a
+        href="/ManageUserAquarium/Delete">Vider</a></p>
 
 <table>
     <tr>
@@ -28,11 +28,11 @@
         <td th:text="${p.dimension}"></td>
         <td th:text="${p.prix}"></td>
         <td><a href="#">Détail</a></td>
-        <td><a th:href="@{'/addEspeceToAquarium/' + ${p.code}}">Ajouter</a> <a th:href="@{'/removeFishAquarium/' + ${p.code}}">Enlever</a></td>
+        <td><a th:href="@{'/ManageUserAquarium/Add/' + ${p.code}}">Ajouter</a> <a th:href="@{'/ManageUserAquarium/Delete/' + ${p.code}}">Enlever</a></td>
     </tr>
 </table>
 
-<p><a href="ajoutEspece">Nouveau poisson</a></p>
+<p><a href="/ManageAquarium/AddEspece">Nouveau poisson</a></p>
 
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Deconnexion"/>

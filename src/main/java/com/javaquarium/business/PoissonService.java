@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 public class PoissonService implements IPoissonService {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final PoissonRepository poissonRepository;
 
     @Autowired
@@ -39,6 +40,11 @@ public class PoissonService implements IPoissonService {
     }
 
     @Override
+    public void delete(PoissonVO poissonVO) {
+        poissonRepository.delete(map(poissonVO));
+    }
+
+    @Override
     public PoissonVO map(PoissonDO poissonDO) {
         PoissonVO poissonVO = new PoissonVO();
         poissonVO.setCode(String.valueOf(poissonDO.getId()));
@@ -54,7 +60,9 @@ public class PoissonService implements IPoissonService {
     @Override
     public PoissonDO map(PoissonVO poissonVO) {
         PoissonDO poissonDo = new PoissonDO();
-        poissonDo.setId(Integer.parseInt(poissonVO.getCode()));
+        if (poissonVO.getCode() != null) {
+            poissonDo.setId(Integer.parseInt(poissonVO.getCode()));
+        }
         poissonDo.setCouleur(poissonVO.getCouleur());
         poissonDo.setDescritpion(poissonVO.getDescription());
         poissonDo.setLargeur(Float.parseFloat(poissonVO.getDimension().split("x")[0].replaceAll("[^\\d.]+|\\.(?!\\d)", "")));

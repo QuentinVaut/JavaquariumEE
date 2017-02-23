@@ -6,7 +6,7 @@
 <body>
 <h1>Ajout d'une nouvelle espèce</h1>
 
-<form action="#" th:action="@{/ajoutEspece}" th:object="${poissonVO}" method="post">
+<form action="#" th:action="@{/ManageAquarium/AddEspece}" th:object="${poissonVO}" method="post">
     <p>Nom: <input type="text" th:field="*{espece}"/></p>
     <p>Description: <input type="text" th:field="*{description}"/></p>
     <p>Couleur: <input type="text" th:field="*{couleur}"/></p>

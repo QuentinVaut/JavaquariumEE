@@ -1,10 +1,9 @@
 package com.javaquarium.business;
 
-import com.javaquarium.beans.data.Role;
-import com.javaquarium.beans.data.User;
+import com.javaquarium.beans.data.RoleDO;
+import com.javaquarium.beans.data.UserDO;
 import com.javaquarium.repository.RoleRepository;
 import com.javaquarium.repository.UserRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }*/
 
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByusername(s);
+        UserDO user = userRepository.findByusername(s);
         if (user == null) {
             LOGGER.warn("user not found with the provided username");
             throw new UsernameNotFoundException("No user present with username: " + s);
@@ -45,8 +44,8 @@ public class MyUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
 
-    public User loadMyUserByUsername(String s) {
-        User user = userRepository.findByusername(s);
+    public UserDO loadMyUserByUsername(String s) {
+        UserDO user = userRepository.findByusername(s);
         if (user == null) {
             return null;
         }
@@ -55,9 +54,9 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
 
-    private Set<GrantedAuthority> getAuthorities(User user) {
+    private Set<GrantedAuthority> getAuthorities(UserDO user) {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        for (Role role : user.getRoles()) {
+        for (RoleDO role : user.getRoles()) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
             authorities.add(grantedAuthority);
         }
@@ -65,11 +64,11 @@ public class MyUserDetailsService implements UserDetailsService {
         return authorities;
     }
 
-    public void saveUser(User user) {
+    public void saveUser(UserDO user) {
         user.setPassword(user.getPassword());
         user.setActive(1);
-        Role userRole = roleRepository.findByRole("ADMIN");
-        user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
+        RoleDO userRole = roleRepository.findByRole("ADMIN");
+        user.setRoles(new HashSet<RoleDO>(Arrays.asList(userRole)));
         userRepository.save(user);
     }
 }

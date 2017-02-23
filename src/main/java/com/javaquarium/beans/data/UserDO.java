@@ -11,7 +11,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class UserDO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class User {
     private int active;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<RoleDO> roles;
 
     public int getId() {
         return id;
@@ -61,17 +61,17 @@ public class User {
         this.active = active;
     }
 
-    public Set<Role> getRoles() {
+    public Set<RoleDO> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(Set<RoleDO> roles) {
         this.roles = roles;
     }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

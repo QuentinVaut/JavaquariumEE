@@ -19,33 +19,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by quentin on 16/02/2017.
  */
 @Controller
 public class ListerEspecesAction {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private PoissonRepository poissonRepository;
-    @Autowired private UserRepository userRepository;
-    @Autowired private PoissonUserRepository poissonUserRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PoissonUserRepository poissonUserRepository;
     private IPoissonService poissonService;
     private IPoissonUserService poissonUserService;
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private List<UserPoissonDO> userPoissonDOS;
     private UserDetails userDetails;
 
     @RequestMapping("/listerEspeces")
     public String listerEspeces(Model model, HttpSession session) {
-        userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         poissonService = new PoissonService(poissonRepository);
-        poissonUserService = new PoissonUserService(poissonUserRepository,userRepository);
-        userPoissonDOS = (ArrayList)session.getAttribute("userPoissonDOS");
+        poissonUserService = new PoissonUserService(poissonUserRepository, userRepository);
+        userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
         //userPoissonDOS = poissonUserService.getUserPoissons(userDetails.getUsername());
-        if(userPoissonDOS.size() == 0) {
+        if (userPoissonDOS.size() == 0) {
             userPoissonDOS.addAll(poissonUserService.getUserPoissons(userDetails.getUsername()));
         }
         logger.warn("Poisson Session : " + userPoissonDOS.size());
