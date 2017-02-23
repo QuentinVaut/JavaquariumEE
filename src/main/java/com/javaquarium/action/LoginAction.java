@@ -38,6 +38,7 @@ public class LoginAction {
     private IPoissonUserService poissonUserService;
     private UserDetails userDetails;
     private List<UserPoissonDO> userPoissonDOS;
+    private Object principal;
 
 
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
@@ -45,7 +46,7 @@ public class LoginAction {
         userPoissonDOS = new ArrayList<>();
         session.setAttribute("userPoissonDOS",userPoissonDOS);
         ModelAndView modelAndView = new ModelAndView();
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
             modelAndView.setViewName("redirect:/listerEspeces");
@@ -59,8 +60,13 @@ public class LoginAction {
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
         User user = new User();
-        modelAndView.addObject("user", user);
-        modelAndView.setViewName("registration");
+        principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            modelAndView.setViewName("redirect:/listerEspeces");
+        } else {
+            modelAndView.addObject("user", user);
+            modelAndView.setViewName("registration");
+        }
         return modelAndView;
     }
 
@@ -77,9 +83,7 @@ public class LoginAction {
             modelAndView.setViewName("registration");
         } else {
             userService.saveUser(user);
-            modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
-            modelAndView.setViewName("registration");
+            modelAndView.setViewName("login");
         }
         return modelAndView;
     }

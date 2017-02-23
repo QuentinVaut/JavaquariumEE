@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by quentin on 16/02/2017.
@@ -43,7 +45,9 @@ public class ListerEspecesAction {
         poissonUserService = new PoissonUserService(poissonUserRepository,userRepository);
         userPoissonDOS = (ArrayList)session.getAttribute("userPoissonDOS");
         //userPoissonDOS = poissonUserService.getUserPoissons(userDetails.getUsername());
-        //userPoissonDOS.addAll(poissonUserService.getUserPoissons(userDetails.getUsername()));
+        if(userPoissonDOS.size() == 0) {
+            userPoissonDOS.addAll(poissonUserService.getUserPoissons(userDetails.getUsername()));
+        }
         logger.warn("Poisson Session : " + userPoissonDOS.size());
 
         model.addAttribute("lstPoissonDO", poissonService.getPoissons());

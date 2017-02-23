@@ -8,7 +8,7 @@
 <h1 th:inline="text"><span th:text="#{javaquarium.welcome}"></span> [[${#httpServletRequest.remoteUser}]]!</h1>
 
 <p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="/SaveAquarium">Sauvegarder</a> <a
-        href="#">Vider</a></p>
+        href="/RemoveUserAquarium">Vider</a></p>
 
 <table>
     <tr>
