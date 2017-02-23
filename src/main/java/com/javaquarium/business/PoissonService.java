@@ -3,8 +3,6 @@ package com.javaquarium.business;
 import com.javaquarium.beans.data.PoissonDO;
 import com.javaquarium.beans.web.PoissonVO;
 import com.javaquarium.repository.PoissonRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,14 +11,8 @@ import java.util.List;
 
 @Service
 public class PoissonService implements IPoissonService {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final PoissonRepository poissonRepository;
-
     @Autowired
-    public PoissonService(PoissonRepository poissonRepository) {
-        this.poissonRepository = poissonRepository;
-    }
+    private PoissonRepository poissonRepository;
 
     public List<PoissonVO> getPoissons() {
         ArrayList<PoissonVO> lstPoisson = new ArrayList<>();

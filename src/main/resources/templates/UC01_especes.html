@@ -17,7 +17,6 @@
         <th>Couleur</th>
         <th>Dimension</th>
         <th>Prix</th>
-        <th>Détail</th>
         <th>Mon aquarium</th>
     </tr>
 
@@ -27,7 +26,6 @@
         <td th:text="${p.couleur}"></td>
         <td th:text="${p.dimension}"></td>
         <td th:text="${p.prix}"></td>
-        <td><a href="#">Détail</a></td>
         <td><a th:href="@{'/ManageUserAquarium/Add/' + ${p.code}}">Ajouter</a> <a th:href="@{'/ManageUserAquarium/Delete/' + ${p.code}}">Enlever</a></td>
     </tr>
 </table>

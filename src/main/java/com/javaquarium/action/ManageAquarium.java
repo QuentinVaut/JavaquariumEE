@@ -2,8 +2,6 @@ package com.javaquarium.action;
 
 import com.javaquarium.beans.web.PoissonVO;
 import com.javaquarium.business.IPoissonService;
-import com.javaquarium.business.PoissonService;
-import com.javaquarium.repository.PoissonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ManageAquarium {
     @Autowired
-    private PoissonRepository poissonRepository;
     private IPoissonService poissonService;
 
 
@@ -29,7 +26,6 @@ public class ManageAquarium {
 
     @PostMapping("/ManageAquarium/AddEspece")
     public String ajoutEspece(@ModelAttribute PoissonVO poissonVO) {
-        poissonService = new PoissonService(poissonRepository);
         poissonService.ajout(poissonVO);
         System.out.println("Poisson : " + poissonVO.getEspece());
         return "redirect:/listerEspeces";

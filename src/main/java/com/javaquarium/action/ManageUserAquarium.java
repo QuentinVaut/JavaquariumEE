@@ -2,10 +2,9 @@ package com.javaquarium.action;
 
 import com.javaquarium.beans.data.PoissonDO;
 import com.javaquarium.beans.data.UserPoissonDO;
-import com.javaquarium.business.*;
-import com.javaquarium.repository.PoissonRepository;
-import com.javaquarium.repository.PoissonUserRepository;
-import com.javaquarium.repository.UserRepository;
+import com.javaquarium.business.IPoissonService;
+import com.javaquarium.business.IPoissonUserService;
+import com.javaquarium.business.MyUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +27,10 @@ import java.util.List;
 public class ManageUserAquarium {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
-    private PoissonRepository poissonRepository;
-    @Autowired
-    private PoissonUserRepository poissonUserRepository;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private MyUserDetailsService userDetailsService;
+    @Autowired
     private IPoissonUserService poissonUserService;
+    @Autowired
     private IPoissonService poissonService;
     private List<UserPoissonDO> userPoissonDOS;
     private UserDetails userDetails;
@@ -44,7 +39,6 @@ public class ManageUserAquarium {
     public String addPoissonToUserAquarium(@PathVariable String idFish, Model model, HttpSession session) {
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
         userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        poissonService = new PoissonService(poissonRepository);
         UserPoissonDO userPoissonDO = new UserPoissonDO();
         userPoissonDO.setUser(userDetailsService.loadMyUserByUsername(userDetails.getUsername()));
         userPoissonDO.setPoissonDO(poissonService.map(poissonService.getPoisson(Integer.parseInt(idFish))));
@@ -56,7 +50,6 @@ public class ManageUserAquarium {
     public String removePoissonToUserAquarium(@PathVariable String idFish, Model model, HttpSession session) {
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
         userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        poissonService = new PoissonService(poissonRepository);
         UserPoissonDO userPoissonDO = new UserPoissonDO();
         userPoissonDO.setUser(userDetailsService.loadMyUserByUsername(userDetails.getUsername()));
         userPoissonDO.setPoissonDO(poissonService.map(poissonService.getPoisson(Integer.parseInt(idFish))));
@@ -76,7 +69,6 @@ public class ManageUserAquarium {
     public String saveUserAquarium(Model model, HttpSession session) {
         userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
-        poissonUserService = new PoissonUserService(poissonUserRepository, userRepository);
         for (UserPoissonDO userPoissonDO : poissonUserService.getUserPoissons(userDetails.getUsername())) {
             if (!userPoissonDOS.contains(userPoissonDO)) {
                 poissonUserService.deleteUserPoisson(userPoissonDO);
@@ -90,7 +82,6 @@ public class ManageUserAquarium {
     @RequestMapping("/ManageUserAquarium/Delete")
     public String removeUserAquarium(Model model, HttpSession session) {
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
-        poissonUserService = new PoissonUserService(poissonUserRepository, userRepository);
         poissonUserService.deleteUserPoisson(userPoissonDOS);
         userPoissonDOS.clear();
         return "redirect:/listerEspeces";

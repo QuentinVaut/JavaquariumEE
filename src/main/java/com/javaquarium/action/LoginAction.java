@@ -3,7 +3,6 @@ package com.javaquarium.action;
 
 import com.javaquarium.beans.data.UserDO;
 import com.javaquarium.beans.data.UserPoissonDO;
-import com.javaquarium.business.IPoissonUserService;
 import com.javaquarium.business.MyUserDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,8 +30,6 @@ public class LoginAction {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MyUserDetailsService userService;
-    private IPoissonUserService poissonUserService;
-    private UserDetails userDetails;
     private List<UserPoissonDO> userPoissonDOS;
     private Object principal;
 
