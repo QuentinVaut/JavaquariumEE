@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:spring="http://www.springframework.org/tags">
 <head>
-    <title>Registration Form</title>
+    <title th:text="#{register.title}"></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <form th:action="@{/}" method="get">
-    <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+    <button class="btn btn-md btn-warning btn-block" type="Submit" th:text="#{register.button.login}"></button>
 </form>
 
 <div class="container">
@@ -18,10 +18,10 @@
             <form autocomplete="off" action="#" th:action="@{/registration}"
                   th:object="${user}" method="post" class="form-horizontal"
                   role="form">
-                <h2>Registration Form</h2>
+                <h2 th:text="#{register.title2}"></h2>
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <input type="text" th:field="*{username}" placeholder="Email"
+                        <input type="text" th:field="*{username}" placeholder="Username"
                                class="form-control"/> <label
                             th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
                             class="validation-message"></label>
@@ -38,7 +38,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-9">
-                        <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                        <button type="submit" class="btn btn-primary btn-block" th:text="#{register.button.register}"></button>
                     </div>
                 </div>
 

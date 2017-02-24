@@ -2,23 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:spring="http://www.springframework.org/tags">
 <head>
-    <title>Lister espèces</title>
+    <title th:text="#{especes.title}"></title>
 </head>
 <body>
 <h1 th:inline="text"><span th:text="#{javaquarium.welcome}"></span> [[${#httpServletRequest.remoteUser}]]!</h1>
 
-<p th:inline="text"> Mon aquarium (<span th:text="${sizeAquarium}"> </span>) <a href="/ManageUserAquarium/Save">Sauvegarder</a>
-    <a
-            href="/ManageUserAquarium/Delete">Vider</a></p>
+<p th:inline="text"> <span th:text="#{especes.table.myaquarium}"></span> (<span th:text="${sizeAquarium}"> </span>)</p> <a href="/ManageUserAquarium/Save" th:text="#{especes.button.save}"></a>
+    <a href="/ManageUserAquarium/Delete" th:text="#{especes.button.clear}"></a>
 
 <table>
     <tr>
-        <th>Nom</th>
-        <th>Description</th>
-        <th>Couleur</th>
-        <th>Dimension</th>
-        <th>Prix</th>
-        <th>Mon aquarium</th>
+        <th th:text="#{especes.table.name}"></th>
+        <th th:text="#{especes.table.description}"></th>
+        <th th:text="#{especes.table.color}"></th>
+        <th th:text="#{especes.table.dimension}"></th>
+        <th th:text="#{especes.table.price}"></th>
+        <th th:text="#{especes.table.myaquarium}"></th>
     </tr>
 
     <tr th:each="p,iterationStatus  : ${lstPoissonDO}">
@@ -27,15 +26,15 @@
         <td th:text="${p.couleur}"></td>
         <td th:text="${p.dimension}"></td>
         <td th:text="${p.prix}"></td>
-        <td><a th:href="@{'/ManageUserAquarium/Add/' + ${p.code}}">Ajouter</a> <a
-                th:href="@{'/ManageUserAquarium/Delete/' + ${p.code}}">Enlever</a></td>
+        <td><a th:href="@{'/ManageUserAquarium/Add/' + ${p.code}}" th:text="#{especes.button.add}"></a> <a
+                th:href="@{'/ManageUserAquarium/Delete/' + ${p.code}}" th:text="#{especes.button.remove}"></a></td>
     </tr>
 </table>
 
-<p><a href="/ManageAquarium/AddEspece">Nouveau poisson</a></p>
+<p><a href="/ManageAquarium/AddEspece" th:text="#{especes.button.newfish}"></a></p>
 
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Deconnexion"/>
+    <button type="submit" th:text="#{especes.button.disconnection}"></button>
 </form>
 
 </body>

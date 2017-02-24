@@ -1,9 +1,11 @@
 package com.javaquarium.action;
 
 
+import com.javaquarium.beans.data.RoleDO;
 import com.javaquarium.beans.data.UserDO;
 import com.javaquarium.beans.data.UserPoissonDO;
 import com.javaquarium.business.MyUserDetailsService;
+import com.javaquarium.repository.RoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,8 @@ public class LoginAction {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private MyUserDetailsService userService;
+    @Autowired
+    private RoleRepository roleRepository;
     private List<UserPoissonDO> userPoissonDOS;
     private Object principal;
 
@@ -60,6 +64,12 @@ public class LoginAction {
         ModelAndView modelAndView = new ModelAndView();
         UserDO user = new UserDO();
         principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        RoleDO roleDO = new RoleDO();
+        roleDO.setRole("ADMIN");
+        if(roleRepository.findByRole("ADMIN") == null) {
+            roleRepository.save(roleDO);
+        }
+
         if (principal instanceof UserDetails) {
             modelAndView.setViewName("redirect:/listerEspeces");
         } else {

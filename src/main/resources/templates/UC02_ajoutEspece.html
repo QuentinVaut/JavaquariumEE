@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Ajout espèce</title>
+    <title th:text="#{ajoutespece.title}"></title>
 </head>
 <body>
-<h1>Ajout d'une nouvelle espèce</h1>
+<h1 th:text="#{ajoutespece.title2}"></h1>
 
 <form action="#" th:action="@{/ManageAquarium/AddEspece}" th:object="${poissonVO}" method="post">
     <p>Nom: <input type="text" th:field="*{espece}"/></p>
@@ -12,7 +12,7 @@
     <p>Couleur: <input type="text" th:field="*{couleur}"/></p>
     <p>Prix: <input type="text" th:field="*{prix}"/></p>
     <p>Dimension(Lxl): <input type="text" th:field="*{dimension}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    <p><button type="submit" th:text="#{ajoutespece.button.add}"></button> <button type="reset" th:text="#{ajoutespece.button.reset}"></button></p>
 </form>
 </body>
 </html>
