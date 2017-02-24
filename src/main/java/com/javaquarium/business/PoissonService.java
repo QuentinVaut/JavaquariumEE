@@ -14,6 +14,9 @@ public class PoissonService implements IPoissonService {
     @Autowired
     private PoissonRepository poissonRepository;
 
+    /**
+     * @return list of poissonvo
+     */
     public List<PoissonVO> getPoissons() {
         ArrayList<PoissonVO> lstPoisson = new ArrayList<>();
         for (PoissonDO poisson : poissonRepository.findAll()) {
@@ -22,20 +25,34 @@ public class PoissonService implements IPoissonService {
         return lstPoisson;
     }
 
+    /**
+     * @param id
+     * @return poissonvo object
+     */
     public PoissonVO getPoisson(int id) {
         return map(poissonRepository.findOne(id));
     }
 
+    /**
+     * @param poisson
+     */
     @Override
     public void ajout(PoissonVO poisson) {
         poissonRepository.save(map(poisson));
     }
 
+    /**
+     * @param poissonVO
+     */
     @Override
     public void delete(PoissonVO poissonVO) {
         poissonRepository.delete(map(poissonVO));
     }
 
+    /**
+     * @param poissonDO
+     * @return poissonvo object
+     */
     @Override
     public PoissonVO map(PoissonDO poissonDO) {
         PoissonVO poissonVO = new PoissonVO();
@@ -49,6 +66,10 @@ public class PoissonService implements IPoissonService {
         return poissonVO;
     }
 
+    /**
+     * @param poissonVO
+     * @return poissondo object
+     */
     @Override
     public PoissonDO map(PoissonVO poissonVO) {
         PoissonDO poissonDo = new PoissonDO();
@@ -63,5 +84,4 @@ public class PoissonService implements IPoissonService {
         poissonDo.setPrix(Integer.parseInt(poissonVO.getPrix()));
         return poissonDo;
     }
-
 }

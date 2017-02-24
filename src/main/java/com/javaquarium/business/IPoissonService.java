@@ -11,17 +11,36 @@ import java.util.List;
 
 public interface IPoissonService {
 
+    /**
+     * @return list of all registred poisson
+     */
     List<PoissonVO> getPoissons();
 
+    /**
+     * @param id
+     * @return poissonvo object
+     */
     PoissonVO getPoisson(int id);
 
+    /**
+     * @param poisson
+     */
     void ajout(PoissonVO poisson);
 
+    /**
+     * @param poissonVO
+     */
     void delete(PoissonVO poissonVO);
 
+    /**
+     * @param poissonDO
+     * @return poissonvo object
+     */
     PoissonVO map(PoissonDO poissonDO);
 
+    /**
+     * @param poissonVO
+     * @return poissondo object
+     */
     PoissonDO map(PoissonVO poissonVO);
-
-
 }

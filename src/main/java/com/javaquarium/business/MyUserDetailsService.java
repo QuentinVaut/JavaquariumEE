@@ -34,6 +34,11 @@ public class MyUserDetailsService implements UserDetailsService {
         this.roleRepository = roleRepository;
     }*/
 
+    /**
+     * @param s
+     * @return userdetails object
+     * @throws UsernameNotFoundException
+     */
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         UserDO user = userRepository.findByusername(s);
         if (user == null) {
@@ -44,6 +49,10 @@ public class MyUserDetailsService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user));
     }
 
+    /**
+     * @param s
+     * @return userdo object
+     */
     public UserDO loadMyUserByUsername(String s) {
         UserDO user = userRepository.findByusername(s);
         if (user == null) {
@@ -53,7 +62,10 @@ public class MyUserDetailsService implements UserDetailsService {
         return user;
     }
 
-
+    /**
+     * @param user
+     * @return list of GrantedAuthority
+     */
     private Set<GrantedAuthority> getAuthorities(UserDO user) {
         Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
         for (RoleDO role : user.getRoles()) {
@@ -64,6 +76,9 @@ public class MyUserDetailsService implements UserDetailsService {
         return authorities;
     }
 
+    /**
+     * @param user
+     */
     public void saveUser(UserDO user) {
         user.setPassword(user.getPassword());
         user.setActive(1);

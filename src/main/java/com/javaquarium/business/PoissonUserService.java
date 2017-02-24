@@ -20,6 +20,10 @@ public class PoissonUserService implements IPoissonUserService {
     @Autowired
     private PoissonUserRepository poissonUserRepository;
 
+    /**
+     * @param username
+     * @return list of userpoissondo
+     */
     @Override
     public List<UserPoissonDO> getUserPoissons(String username) {
         UserDO user = userRepository.findByusername(username);
@@ -28,21 +32,33 @@ public class PoissonUserService implements IPoissonUserService {
         return lstUserPoissons;
     }
 
+    /**
+     * @param userPoissonDO
+     */
     @Override
     public void save(UserPoissonDO userPoissonDO) {
         poissonUserRepository.save(userPoissonDO);
     }
 
+    /**
+     * @param userPoissonDOList
+     */
     @Override
     public void save(List<UserPoissonDO> userPoissonDOList) {
         poissonUserRepository.save(userPoissonDOList);
     }
 
+    /**
+     * @param userPoissonDOList
+     */
     @Override
     public void deleteUserPoisson(List<UserPoissonDO> userPoissonDOList) {
         poissonUserRepository.delete(userPoissonDOList);
     }
 
+    /**
+     * @param userPoissonDO
+     */
     @Override
     public void deleteUserPoisson(UserPoissonDO userPoissonDO) {
         poissonUserRepository.delete(userPoissonDO);

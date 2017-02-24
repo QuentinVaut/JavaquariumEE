@@ -29,6 +29,11 @@ public class ListerEspecesAction {
     private List<UserPoissonDO> userPoissonDOS;
     private UserDetails userDetails;
 
+    /**
+     * @param model
+     * @param session
+     * @return redirection to UC01_especes
+     */
     @RequestMapping("/listerEspeces")
     public String listerEspeces(Model model, HttpSession session) {
         userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

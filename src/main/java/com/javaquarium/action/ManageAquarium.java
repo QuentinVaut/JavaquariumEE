@@ -17,13 +17,20 @@ public class ManageAquarium {
     @Autowired
     private IPoissonService poissonService;
 
-
+    /**
+     * @param model
+     * @return redirection to UC02_ajoutEspece
+     */
     @RequestMapping("/ManageAquarium/AddEspece")
     public String ajoutEspece(Model model) {
         model.addAttribute("poissonVO", new PoissonVO());
         return "UC02_ajoutEspece";
     }
 
+    /**
+     * @param poissonVO
+     * @return redirection to listerEspeces
+     */
     @PostMapping("/ManageAquarium/AddEspece")
     public String ajoutEspece(@ModelAttribute PoissonVO poissonVO) {
         poissonService.ajout(poissonVO);

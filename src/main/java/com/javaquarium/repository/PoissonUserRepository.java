@@ -10,5 +10,10 @@ import java.util.List;
  * Created by quentin on 21/02/2017.
  */
 public interface PoissonUserRepository extends JpaRepository<UserPoissonDO, Integer> {
+
+    /**
+     * @param user
+     * @return the list of UserPoissonDO
+     */
     List<UserPoissonDO> findByUser(UserDO user);
 }

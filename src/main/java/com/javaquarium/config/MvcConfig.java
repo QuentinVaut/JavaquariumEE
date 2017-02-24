@@ -24,30 +24,45 @@ import javax.sql.DataSource;
 @ComponentScan({"com.javaquarium"})
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * @return BCryptPasswordEncoder object
+     */
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
 
+    /**
+     * @return LocaleResolver object
+     */
     @Bean
     public LocaleResolver localeResolver() //The bean must be named localeResolver.
     {
         return new SessionLocaleResolver();
     }
 
+    /**
+     * @param registry
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         super.addInterceptors(registry);
         registry.addInterceptor(new LocaleChangeInterceptor());
     }
 
+    /**
+     * @param registry
+     */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/login").setViewName("login");
     }
 
+    /**
+     * @return DataSource object
+     */
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -57,5 +72,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         dataSource.setPassword("");
         return dataSource;
     }
-
 }

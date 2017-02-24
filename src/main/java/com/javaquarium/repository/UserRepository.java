@@ -9,5 +9,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserRepository extends JpaRepository<UserDO, Long> {
+
+    /**
+     * @param username
+     * @return userdo object
+     */
     UserDO findByusername(String username);
 }

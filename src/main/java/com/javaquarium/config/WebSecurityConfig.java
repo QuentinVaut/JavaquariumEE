@@ -21,16 +21,24 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @ComponentScan("com.javaquarium")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private MyUserDetailsService userDetailsService;
 
-
+    /**
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
+    /**
+     * @param http
+     * @throws Exception
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -47,6 +55,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
+    /**
+     * @param security
+     */
     @Override
     public void configure(WebSecurity security) {
         security.ignoring().antMatchers("/resources/**");

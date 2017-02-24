@@ -9,5 +9,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<RoleDO, Integer> {
+
+    /**
+     * @param role
+     * @return roledo object
+     */
     RoleDO findByRole(String role);
 }

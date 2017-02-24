@@ -5,7 +5,6 @@ package com.javaquarium.beans.web;
  */
 public class PoissonVO {
 
-
     private String code;
     private String espece;
     private String description;

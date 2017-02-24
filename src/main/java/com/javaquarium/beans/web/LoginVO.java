@@ -17,7 +17,6 @@ public class LoginVO {
     @Size(min = 1)
     private String motDePasse;
 
-
     public LoginVO() {
         super();
     }

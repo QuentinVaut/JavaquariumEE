@@ -35,6 +35,12 @@ public class ManageUserAquarium {
     private List<UserPoissonDO> userPoissonDOS;
     private UserDetails userDetails;
 
+    /**
+     * @param idFish
+     * @param model
+     * @param session
+     * @return redirection to listerEspeces
+     */
     @RequestMapping(value = "/ManageUserAquarium/Add/{idFish}", method = RequestMethod.GET)
     public String addPoissonToUserAquarium(@PathVariable String idFish, Model model, HttpSession session) {
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
@@ -46,6 +52,12 @@ public class ManageUserAquarium {
         return "redirect:/listerEspeces";
     }
 
+    /**
+     * @param idFish
+     * @param model
+     * @param session
+     * @return redirection to listerEspeces
+     */
     @RequestMapping(value = "/ManageUserAquarium/Delete/{idFish}", method = RequestMethod.GET)
     public String removePoissonToUserAquarium(@PathVariable String idFish, Model model, HttpSession session) {
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
@@ -65,6 +77,11 @@ public class ManageUserAquarium {
         return "redirect:/listerEspeces";
     }
 
+    /**
+     * @param model
+     * @param session
+     * @return redirection to listerEspeces
+     */
     @RequestMapping("/ManageUserAquarium/Save")
     public String saveUserAquarium(Model model, HttpSession session) {
         userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -79,6 +96,11 @@ public class ManageUserAquarium {
         return "redirect:/listerEspeces";
     }
 
+    /**
+     * @param model
+     * @param session
+     * @return redirection to listerEspeces
+     */
     @RequestMapping("/ManageUserAquarium/Delete")
     public String removeUserAquarium(Model model, HttpSession session) {
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");

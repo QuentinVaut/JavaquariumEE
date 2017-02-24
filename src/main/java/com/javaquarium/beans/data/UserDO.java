@@ -29,42 +29,72 @@ public class UserDO {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleDO> roles;
 
+    /**
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * @param username
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * @return
+     */
     public int getActive() {
         return active;
     }
 
+    /**
+     * @param active
+     */
     public void setActive(int active) {
         this.active = active;
     }
 
+    /**
+     * @return list of role
+     */
     public Set<RoleDO> getRoles() {
         return roles;
     }
 
+    /**
+     * @param roles
+     */
     public void setRoles(Set<RoleDO> roles) {
         this.roles = roles;
     }

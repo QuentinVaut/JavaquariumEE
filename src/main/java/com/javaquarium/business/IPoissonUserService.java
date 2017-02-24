@@ -9,13 +9,29 @@ import java.util.List;
  */
 public interface IPoissonUserService {
 
+    /**
+     * @param username
+     * @return the list of UserPoissonDO
+     */
     List<UserPoissonDO> getUserPoissons(String username);
 
+    /**
+     * @param userPoissonDO
+     */
     void save(UserPoissonDO userPoissonDO);
 
+    /**
+     * @param userPoissonDOList
+     */
     void save(List<UserPoissonDO> userPoissonDOList);
 
+    /**
+     * @param userPoissonDOList
+     */
     void deleteUserPoisson(List<UserPoissonDO> userPoissonDOList);
 
+    /**
+     * @param userPoissonDO
+     */
     void deleteUserPoisson(UserPoissonDO userPoissonDO);
 }

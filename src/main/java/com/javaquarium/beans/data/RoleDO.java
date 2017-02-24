@@ -15,18 +15,30 @@ public class RoleDO {
     @Column(name = "role")
     private String role;
 
+    /**
+     * @return id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * @return role
+     */
     public String getRole() {
         return role;
     }
 
+    /**
+     * @param role
+     */
     public void setRole(String role) {
         this.role = role;
     }

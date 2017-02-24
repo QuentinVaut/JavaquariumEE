@@ -33,7 +33,10 @@ public class LoginAction {
     private List<UserPoissonDO> userPoissonDOS;
     private Object principal;
 
-
+    /**
+     * @param session
+     * @return modelAndView object
+     */
     @RequestMapping(value = {"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login(HttpSession session) {
         userPoissonDOS = new ArrayList<>();
@@ -49,6 +52,9 @@ public class LoginAction {
         return modelAndView;
     }
 
+    /**
+     * @return modelAndView object
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
@@ -63,6 +69,11 @@ public class LoginAction {
         return modelAndView;
     }
 
+    /**
+     * @param user
+     * @param bindingResult
+     * @return modelAndView object
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid UserDO user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();

@@ -19,26 +19,44 @@ public class UserPoissonDO {
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.DETACH})
     private PoissonDO poissonDO;
 
+    /**
+     * @return id
+     */
     public Integer getId() {
         return id;
     }
 
+    /**
+     * @param id
+     */
     public void setId(Integer id) {
         this.id = id;
     }
 
+    /**
+     * @return user
+     */
     public UserDO getUser() {
         return user;
     }
 
+    /**
+     * @param user
+     */
     public void setUser(UserDO user) {
         this.user = user;
     }
 
+    /**
+     * @return poissonDO
+     */
     public PoissonDO getPoissonDO() {
         return poissonDO;
     }
 
+    /**
+     * @param poissonDO
+     */
     public void setPoissonDO(PoissonDO poissonDO) {
         this.poissonDO = poissonDO;
     }
