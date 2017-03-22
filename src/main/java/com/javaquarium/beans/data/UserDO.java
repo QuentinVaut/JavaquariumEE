@@ -104,7 +104,6 @@ public class UserDO {
         return "UserDO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", active=" + active +
                 ", roles=" + roles +
                 '}';

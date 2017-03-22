@@ -38,15 +38,15 @@ public class ListerEspecesAction {
     public String listerEspeces(Model model, HttpSession session) {
         userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         userPoissonDOS = (ArrayList) session.getAttribute("userPoissonDOS");
-        if (userPoissonDOS.size() == 0) {
+        if (userPoissonDOS.isEmpty()) {
             userPoissonDOS.addAll(poissonUserService.getUserPoissons(userDetails.getUsername()));
         }
 
         model.addAttribute("lstPoissonDO", poissonService.getPoissons());
-        if (userPoissonDOS != null) {
-            model.addAttribute("sizeAquarium", userPoissonDOS.size());
-        } else {
+        if (userPoissonDOS == null) {
             model.addAttribute("sizeAquarium", 0);
+        } else {
+            model.addAttribute("sizeAquarium", userPoissonDOS.size());
         }
         return "UC01_especes";
     }
